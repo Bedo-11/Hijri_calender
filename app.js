@@ -1,3 +1,102 @@
+$(function () {
+
+  initHijrDatePicker();
+
+  initHijrDatePickerDefault();
+
+
+  var holidays = [
+    moment("1442-05-19", 'iYYYY-iMM-iDD'), // format of disabled hijri date
+    moment("2021-1-5", 'YYYY-MM-DD'), // format of disabled gregorian date
+
+    // Weekend days
+    moment().day(5),
+    moment().day(6),
+  ];
+
+
+
+  // function that return gregorian date 
+  $(".hijri-date-input").on('dp.change', function (arg) {
+
+    if (!arg.date) {
+      $("#selected-date").html('');
+      return;
+    };
+
+    let date = arg.date;
+    // console.log(date.format("YYYY/M/D"));
+
+    $("#selected-date").html(date.format("YYYY/M/D"));
+    // " Hijri:" + date.format("iYYYY/iM/iD")
+  });
+
+
+
+
+
+  var today = moment().startOf('d');
+
+
+  $('.disable-date').hijriDatePicker({
+    disabledDates: holidays, 
+    viewMode: "months",
+    hijri: true,
+    debug: true,
+    showClear: true,
+    showTodayButton: true,
+    showClose: true,
+    showSwitcher: true,
+    minDate: today
+  });
+
+
+});
+
+
+
+function initHijrDatePicker() {
+
+  $(".hijri-date-input").hijriDatePicker({
+    locale: "ar-sa",
+    format: "DD-MM-YYYY",
+    hijriFormat: "iYYYY-iMM-iDD",
+    dayViewHeaderFormat: "MMMM YYYY",
+    hijriDayViewHeaderFormat: "iMMMM iYYYY",
+    showSwitcher: false,
+    allowInputToggle: true,
+    showTodayButton: false,
+    // useCurrent: true,
+    // daysOfWeekDisabled: [5, 6],
+    isRTL: true,
+    viewMode: 'years',
+    keepOpen: false,
+    hijri: true,
+    debug: true,
+    showClear: true,
+    showTodayButton: true,
+    showClose: true,
+
+  });
+}
+
+function initHijrDatePickerDefault() {
+
+  $(".hijri-date-input").hijriDatePicker();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // $(function() {
 
 //   // $("#hijri-date-input").hijriDatePicker();

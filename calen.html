@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 
   <title>
-    src/Bootstrap Hijri Date Picker
+    التقويم الهجري للويب
   </title>
 
 
@@ -65,99 +65,8 @@
   <script src="js/moment-hijri.js"></script>
   <script src="js/bootstrap-hijri-datetimepicker.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> -->
+<script src="/app.js"></script>
 
-  <script type="text/javascript">
-
-
-    $(function () {
-
-      initHijrDatePicker();
-
-      initHijrDatePickerDefault();
-
-
-      var holidays = [
-        moment("1442-05-19", 'iYYYY-iMM-iDD'), // format of disabled hijri date
-        moment("2021-1-5", 'YYYY-MM-DD'), // format of disabled gregorian date
-
-        // Weekend days
-        moment().day(5),
-        moment().day(6),
-      ];
-
-
-
-      // function that return gregorian date 
-      $(".hijri-date-input").on('dp.change', function (arg) {
-
-        if (!arg.date) {
-          $("#selected-date").html('');
-          return;
-        };
-
-        let date = arg.date;
-        // console.log(date.format("YYYY/M/D"));
-
-        $("#selected-date").html(date.format("YYYY/M/D"));
-        // " Hijri:" + date.format("iYYYY/iM/iD")
-      });
-
-
-
-
-
-      var today = moment().startOf('d');
-
-
-      $('.disable-date').hijriDatePicker({
-        disabledDates: holidays, 
-        viewMode: "months",
-        hijri: true,
-        debug: true,
-        showClear: true,
-        showTodayButton: true,
-        showClose: true,
-        showSwitcher: true,
-        minDate: today
-      });
-
-
-    });
-
-
-
-    function initHijrDatePicker() {
-
-      $(".hijri-date-input").hijriDatePicker({
-        locale: "ar-sa",
-        format: "DD-MM-YYYY",
-        hijriFormat: "iYYYY-iMM-iDD",
-        dayViewHeaderFormat: "MMMM YYYY",
-        hijriDayViewHeaderFormat: "iMMMM iYYYY",
-        showSwitcher: false,
-        allowInputToggle: true,
-        showTodayButton: false,
-        // useCurrent: true,
-        // daysOfWeekDisabled: [5, 6],
-        isRTL: true,
-        viewMode: 'years',
-        keepOpen: false,
-        hijri: true,
-        debug: true,
-        showClear: true,
-        showTodayButton: true,
-        showClose: true,
-
-      });
-    }
-
-    function initHijrDatePickerDefault() {
-
-      $(".hijri-date-input").hijriDatePicker();
-    }
-
-
-  </script>
 
 </body>
 
