@@ -1,0 +1,162 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>
+    src/Bootstrap Hijri Date Picker
+  </title>
+
+
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="bg-light">
+
+
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>Bootstrap Hijri Date Picker v1.0.0</h2>
+      <p class="lead">
+
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>
+            التاريخ
+          </label>
+          <div class="input-group">
+            <input type="text" class="form-control hijri-date-input" />
+          </div>
+          <div>
+            <h3 id="selected-date"></h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>
+            التاريخ مع إلغاء الإجازات
+          </label>
+          <div class="input-group">
+            <input type="text" class="form-control disable-date" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+         <span id="selected-date"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-3.3.1.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/momentjs.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script src="js/moment-hijri.js"></script>
+  <script src="js/bootstrap-hijri-datetimepicker.js"></script>
+
+  <script type="text/javascript">
+
+
+    $(function () {
+
+      initHijrDatePicker();
+
+      //initHijrDatePickerDefault();
+
+      var holidays = [
+        moment("1442-05-19", 'iYYYY-iMM-iDD'),
+      ];
+
+
+
+      $(".hijri-date-input").hijriDatePicker({
+        showTodayButton: true,
+        showClear: true,
+        useCurrent: false
+      });
+
+
+      // function that return 
+      $(".hijri-date-input").on('dp.change', function (arg) {
+
+        if (!arg.date) {
+          $("#selected-date").html('');
+          return;
+        };
+
+        let date = arg.date;
+
+        $("#selected-date").html(date.format("YYYY/M/D"));
+        // " Hijri:" + date.format("iYYYY/iM/iD")
+      });
+
+
+
+
+      var today = moment().startOf('d');
+
+      $('.disable-date').hijriDatePicker({
+
+        format: 'L',
+        daysOfWeekDisabled: [5, 6], // جمعة و سبت 
+        disabledDates: holidays,
+        viewMode: "years",
+        hijri: true,
+        debug: true,
+        showClear: true,
+        showTodayButton: true,
+        showClose: true,
+        showSwitcher: true,
+        minDate: today
+      });
+
+
+    });
+
+
+
+    function initHijrDatePicker() {
+
+      $(".hijri-date-input").hijriDatePicker({
+        locale: "ar-sa",
+        format: "DD-MM-YYYY",
+        hijriFormat: "iYYYY-iMM-iDD",
+        dayViewHeaderFormat: "MMMM YYYY",
+        hijriDayViewHeaderFormat: "iMMMM iYYYY",
+        showSwitcher: false,
+        allowInputToggle: true,
+        showTodayButton: false,
+        // useCurrent: true,
+        daysOfWeekDisabled: [5, 6],
+        isRTL: true,
+        viewMode: 'years',
+        keepOpen: false,
+        hijri: true,
+        debug: true,
+        showClear: true,
+        showTodayButton: true,
+        showClose: true,
+
+      });
+    }
+
+    function initHijrDatePickerDefault() {
+
+      $(".hijri-date-input").hijriDatePicker();
+    }
+
+
+  </script>
+
+</body>
+
+</html>
