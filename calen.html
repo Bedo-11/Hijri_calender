@@ -10,11 +10,12 @@
 
   <link href="css/bootstrap.css" rel="stylesheet" />
   <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
 
 
 </head>
 
-<body class="bg-light">
+<body dir="rtl" class="bg-light">
 
 
   <div class="container">
@@ -95,6 +96,7 @@
         };
 
         let date = arg.date;
+        // console.log(date.format("YYYY/M/D"));
 
         $("#selected-date").html(date.format("YYYY/M/D"));
         // " Hijri:" + date.format("iYYYY/iM/iD")
