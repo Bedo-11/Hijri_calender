@@ -6,7 +6,7 @@ $(function () {
 
 
   var holidays = [
-    moment("1442-05-19", 'iYYYY-iMM-iDD'), // format of disabled hijri date
+    moment("1442-05-29", 'iYYYY-iMM-iDD'), // format of disabled hijri date
     moment("2021-1-5", 'YYYY-MM-DD'), // format of disabled gregorian date
 
     // Weekend days
@@ -25,10 +25,9 @@ $(function () {
     };
 
     let date = arg.date;
-    // console.log(date.format("YYYY/M/D"));
+    
 
-    $("#selected-date").html(date.format("YYYY/M/D"));
-    // " Hijri:" + date.format("iYYYY/iM/iD")
+    $("#selected-date").html(" التاريخ بالميلادي:" + date.format("YYYY/M/D") + "<br>" + " التاريخ بالهجري:" + date.format("iYYYY/iM/iD"));
   });
 
 
@@ -63,7 +62,7 @@ function initHijrDatePicker() {
     hijriFormat: "iYYYY-iMM-iDD",
     dayViewHeaderFormat: "MMMM YYYY",
     hijriDayViewHeaderFormat: "iMMMM iYYYY",
-    showSwitcher: false,
+    showSwitcher: true,
     allowInputToggle: true,
     showTodayButton: false,
     // useCurrent: true,
