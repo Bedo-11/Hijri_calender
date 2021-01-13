@@ -5,15 +5,13 @@ $(function () {
   initHijrDatePickerDefault();
 
 
-  var holidays = [
-    moment("1442-05-29", 'iYYYY-iMM-iDD'), // format of disabled hijri date
-    moment("2021-1-5", 'YYYY-MM-DD'), // format of disabled gregorian date
 
-    // Weekend days
-    moment().day(5),
-    moment().day(6),
-  ];
-
+  // جميع الإجازات الرسمية علي مدار السنة 
+let holidays;
+holidays = [
+  moment("1442-05-29", 'iYYYY-iMM-iDD'), // format of disabled hijri date
+  moment("01-25-2021"), // format of disabled gregorian date
+];
 
 
   // function that return gregorian date 
@@ -39,7 +37,10 @@ $(function () {
 
   $('.disable-date').hijriDatePicker({
     disabledDates: holidays, 
+    daysOfWeekDisabled: [5,6],
     viewMode: "months",
+    format: "DD-MM-YYYY",
+    hijriFormat: "iYYYY-iMM-iDD",
     hijri: true,
     debug: true,
     showClear: true,
@@ -65,8 +66,6 @@ function initHijrDatePicker() {
     showSwitcher: true,
     allowInputToggle: true,
     showTodayButton: false,
-    // useCurrent: true,
-    // daysOfWeekDisabled: [5, 6],
     isRTL: true,
     viewMode: 'years',
     keepOpen: false,
@@ -92,79 +91,3 @@ function initHijrDatePickerDefault() {
 
 
 
-
-
-
-
-// $(function() {
-
-//   // $("#hijri-date-input").hijriDatePicker();
-
-//   // document.write(writeIslamicDate(-1));
-
-//     var holidays = [
-//       '1.1.2020',
-//       '2.1.2020',
-//       '20.2.2020',
-//       '19.1.2020',
-//       '1.8.2020',
-//       '15.8.2020',
-//       '1.11.2020',
-//       '8.12.2020',
-//       '25.12.2020',
-//       '26.12.2020'
-//     ];
-
-
-//     function noSundaysOrHolidays(date) {
-//       var day = date.getDay();
-//       if (day != 5 && day != 6) {
-//         var d = date.getDate();
-//         var m = date.getMonth();
-//         var y = date.getFullYear();
-//         for (i = 0; i < holidays.length; i++) {
-//           if($.inArray((d) + '.' + (m+1) + '.' + y, holidays) != -1) {
-//             return [false];
-//           }
-//         }
-//         return [true];
-//       } else {
-//         return [(day != 5 && day !=6), ''];
-//       }
-//     }
-    
-
-  
-//     $('#date').datepicker({
-//       onClose: function(dateText, inst) { 
-//           $(this).attr("disabled", false);
-//           console.log('mewo!');
-//           console.log(this.value);
-//           convertToHijri(this.value);
-//       },
-//       beforeShow: function(input, inst) {
-//         $(this).attr("disabled", true);
-//       },
-//       beforeShowDay: noSundaysOrHolidays,
-//       minDate: 0,
-//       dateFormat: 'dd.mm.yy',
-//     });
-
-    
-
-
-//   });
-
-//  let btn =  document.querySelector('#gregorianInput');
-
-//  btn.addEventListener('click', convertToHijri);
-
-//   function convertToHijri(d) {
-
-//     console.log('Hoo');
-//     var gregorianDate = d.value
-//     var hijriDate = document.getElementById("hijriDate");
-
-//     var date = HijriJS.toHijri(gregorianDate, "/");
-//     hijriDate.innerHTML = date.toString();
-//   }
